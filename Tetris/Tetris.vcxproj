@@ -72,8 +72,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\bin</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\bin\intermadiates</IntDir>
-    <IncludePath>C:\Users\bulga\Documents\Visual Studio 2017\Projects\Tetris\Dependencies\SDL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\bulga\Documents\Visual Studio 2017\Projects\Tetris\Dependencies\SDL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\Dependencies\SDL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\Dependencies\SDL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
