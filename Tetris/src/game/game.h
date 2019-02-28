@@ -4,6 +4,7 @@
 #include "../pieces/pieces.h"
 #include "../io/io.h"
 #include <time.h>
+#include <stdlib.h>
 
 #define WAIT_TIME 700
 
