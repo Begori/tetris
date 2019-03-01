@@ -47,12 +47,60 @@ namespace game {
 
 	void Game::DrawPiece(int x, int y, int piece, int rotation)
 	{
+		color color;
+		int pixelsX = board->GetXPosInPixels(x);
+		int pixelsY = board->GetXPosInPixels(y);
 
+		for (int i = 0; i < PIECE_BLOCKS; i++)
+		{
+			for (int j = 0; j < PIECE_BLOCKS; j++)
+			{
+				int blockType = pieces->GetBlockType(i, j, piece, rotation);
+				switch (blockType)
+				{
+				case 1: color = GREEN; break;
+				case 2: color = BLUE; break;
+				}
+
+				if (blockType != 0)
+				{
+					int x1 = pixelsX + i * BLOCK_SIZE;
+					int y1 = pixelsY + j * BLOCK_SIZE;
+					int x2 = x1 + BLOCK_SIZE - 1;
+					int y2 = y1 + BLOCK_SIZE - 1;
+
+					io->DrawRectangle(x1, y1, x2, y2, color);
+				}
+			}
+		}
 	}
 
 	void Game::DrawBoard()
 	{
+		int leftBorderPosition = BOARD_POSITION - (BLOCK_SIZE * (BOARD_WIDRH / 2));
+		int rightBorderPosition = BOARD_POSITION + (BLOCK_SIZE * (BOARD_WIDRH / 2));
+		int topBorderPosition = screenHeight - (BLOCK_SIZE * BOARD_HEIGHT);
+		
+		io->DrawRectangle(leftBorderPosition, topBorderPosition, rightBorderPosition, screenHeight, BLACK);
 
+		io->DrawRectangle(leftBorderPosition - BOARD_LINE_WIDTH, topBorderPosition, leftBorderPosition, screenHeight, BLUE);
+		io->DrawRectangle(rightBorderPosition, topBorderPosition, rightBorderPosition + BOARD_LINE_WIDTH, screenHeight, BLUE);
+
+		for (int i = 0; i < BOARD_WIDRH; i++)
+		{
+			for (int j = 0; j < BOARD_HEIGHT; j++)
+			{
+				if (!board->IsFreeBlock(i, j))
+				{
+					int x1 = leftBorderPosition + i * BLOCK_SIZE;
+					int y1 = topBorderPosition + j * BLOCK_SIZE;
+					int x2 = x1 + BLOCK_SIZE - 1;
+					int y2 = y1 + BLOCK_SIZE - 1;
+					
+					io->DrawRectangle(x1, y1, x2, y2, RED);
+				}
+			}
+		}
 	}
 
 	void Game::DrawScene()
