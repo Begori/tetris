@@ -13,14 +13,14 @@ namespace board {
 
 	void Board::InitBoard()
 	{
-		for (int i = 0; i < BOARD_WIDRH; i++)
+		for (int i = 0; i < BOARD_WIDTH; i++)
 			for (int j = 0; j < BOARD_HEIGHT; j++)
 				board[i][j] = POS_FREE;
 	}
 
 	int Board::GetXPosInPixels(int pos)
 	{
-		return (BOARD_POSITION - BLOCK_SIZE * (BOARD_WIDRH / 2)) + pos * BLOCK_SIZE;
+		return (BOARD_POSITION - BLOCK_SIZE * (BOARD_WIDTH / 2)) + pos * BLOCK_SIZE;
 	}
 
 	int Board::GetYPosInPixels(int pos)
@@ -30,7 +30,7 @@ namespace board {
 
 	bool Board::IsGameOver()
 	{
-		for (int i = 0; i < BOARD_WIDRH; i++)
+		for (int i = 0; i < BOARD_WIDTH; i++)
 		{
 			if (board[0][i] == POS_FILLED)
 				return true;
@@ -41,7 +41,7 @@ namespace board {
 
 	void Board::DeleteLine(int y)
 	{
-		for (int i = 0; i < BOARD_WIDRH; i++)
+		for (int i = 0; i < BOARD_WIDTH; i++)
 		{
 			for (int j = y; j > 0 ; j--)
 			{
@@ -55,7 +55,7 @@ namespace board {
 		for (int j = 0; j < BOARD_HEIGHT; j++)
 		{
 			int i = 0;
-			while (i < BOARD_WIDRH)
+			while (i < BOARD_WIDTH)
 			{
 				if (board[j][i] != POS_FILLED)
 					break;
@@ -63,7 +63,7 @@ namespace board {
 				++i;
 			}
 
-			if (i == BOARD_WIDRH)
+			if (i == BOARD_WIDTH)
 				DeleteLine(j);
 		}
 	}
@@ -96,7 +96,7 @@ namespace board {
 		{
 			for (int j1 = 0, j2 = y; j1 < PIECE_BLOCKS; j1++, j2++)
 			{
-				if (i2 > BOARD_WIDRH || j2 > BOARD_HEIGHT || i2 < 0)
+				if (i2 > BOARD_WIDTH || j2 > BOARD_HEIGHT || i2 < 0)
 				{
 					if (pieces->GetBlockType(i2, j2, piece, rotation) != 0)
 						return false;

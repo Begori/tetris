@@ -3,7 +3,7 @@
 
 #define PIECE_BLOCKS 5
 #define BOARD_POSITION 320
-#define BOARD_WIDRH 10
+#define BOARD_WIDTH 10
 #define BOARD_HEIGHT 20
 #define BOARD_LINE_WIDTH 6
 #define BLOCK_SIZE 16
@@ -29,7 +29,7 @@ namespace board {
 		bool IsGameOver();
 	private:
 		enum {POS_FREE, POS_FILLED};
-		int board[BOARD_WIDRH][BOARD_HEIGHT];
+		int board[BOARD_WIDTH][BOARD_HEIGHT];
 		Pieces* pieces;
 		int screenHeight;
 

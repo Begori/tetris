@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include <sdl_gfxprimitives.h>
 
 namespace core {
 namespace io {

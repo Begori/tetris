@@ -52,25 +52,12 @@ namespace io {
 
 	void IO::DrawRectangle(int x1, int y1, int x2, int y2, enum color color)
 	{
-		SDL_Rect rect;
-		rect.x = x1;
-		rect.y = y1;
-		rect.w = x2;
-		rect.h = y2 - 1;
-
-		SDL_FillRect(screen, &rect, colors[color]);
+		boxColor(screen, x1, y1, x2, y2, colors[color]);
 	}
 
 	void IO::ClearScreen()
 	{
-		SDL_Rect rect;
-		rect.x = 0;
-		rect.y = 0;
-		rect.w = screen->w - 1;
-		rect.h = screen->h - 1;
-
-		
-		SDL_FillRect(screen, &rect, colors[BLACK]);
+		boxColor(screen, 0, 0, screen->w - 1, screen->h - 1, colors[BLACK]);
 	}
 
 	void IO::UpdateScreen()
