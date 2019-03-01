@@ -21,45 +21,107 @@ namespace io {
 		InitGraph();
 	}
 
-	int IO::InitGraph()
+	IO::~IO()
 	{
-		return 0;
+		SDL_Quit();
+	}
+
+	bool IO::InitGraph()
+	{
+		if (SDL_Init(SDL_INIT_VIDEO) != 0)
+		{
+			fprintf(stderr, "Could not initialize SDL. %s\n", SDL_GetError());
+			return false;
+		}
+
+		const SDL_VideoInfo* videoInfo = SDL_GetVideoInfo();
+		Uint8 video_bpp = 16;
+
+		if (videoInfo->vfmt->BitsPerPixel > 8)
+			video_bpp = videoInfo->vfmt->BitsPerPixel;
+
+		if ((screen = SDL_SetVideoMode(640, 480, video_bpp, SDL_DOUBLEBUF | SDL_SWSURFACE)) == NULL)
+		{
+			fprintf(stderr, "Could not set video mode. %s\n", SDL_GetError());
+			return false;
+		}
+
+		return true;
 	}
 
 
 	void IO::DrawRectangle(int x1, int y1, int x2, int y2, enum color color)
 	{
+		SDL_Rect rect;
+		rect.x = x1;
+		rect.y = y1;
+		rect.w = x2;
+		rect.h = y2 - 1;
 
+		SDL_FillRect(screen, &rect, colors[color]);
 	}
 
 	void IO::ClearScreen()
 	{
+		SDL_Rect rect;
+		rect.x = 0;
+		rect.y = 0;
+		rect.w = screen->w - 1;
+		rect.h = screen->h - 1;
 
+		
+		SDL_FillRect(screen, &rect, colors[BLACK]);
 	}
 
 	void IO::UpdateScreen()
 	{
-
+		SDL_Flip(screen);
 	}
 
 	int IO::PollKey()
 	{
-		return 0;
+		SDL_Event event;
+		while (SDL_PollEvent(&event))
+		{
+			switch (event.type)
+			{
+			case SDL_KEYDOWN:
+				return event.key.keysym.sym;
+			case SDL_QUIT:
+				exit(3);
+			}
+		}
+
+		return -1;
 	}
 
 	int IO::GetKey()
 	{
-		return 0;
+		SDL_Event event;
+		while (true)
+		{
+			SDL_WaitEvent(&event);
+			if (event.type == SDL_KEYDOWN)
+				break;
+			
+			if (event.type == SDL_QUIT)
+				exit(3);
+		}
+
+		return event.key.keysym.sym;
 	}
 
 	bool IO::IsKeyDown(int key)
 	{
-		return false;
+		SDL_PumpEvents();
+		Uint8* keyTable = SDL_GetKeyState(NULL);
+
+		return keyTable[key];
 	}
 
 	int IO::GetScreenHeight()
 	{
-		return 0;
+		return screen->h;
 	}
 
 }}

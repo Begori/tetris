@@ -9,15 +9,16 @@ namespace io {
 	{
 	public:
 		IO();
+		~IO();
 
 		void DrawRectangle(int x1, int y1, int x2, int y2, enum color color);
 		void ClearScreen();
 		void UpdateScreen();
 
 		int GetScreenHeight();
-		int InitGraph();
 		int PollKey();
 		int GetKey();
+		bool InitGraph();
 		bool IsKeyDown(int key);
 	};
 
