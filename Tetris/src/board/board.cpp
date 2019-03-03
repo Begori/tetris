@@ -32,7 +32,7 @@ namespace board {
 	{
 		for (int i = 0; i < BOARD_WIDTH; i++)
 		{
-			if (board[0][i] == POS_FILLED)
+			if (board[i][0] == POS_FILLED)
 				return true;
 		}
 
@@ -41,11 +41,11 @@ namespace board {
 
 	void Board::DeleteLine(int y)
 	{
-		for (int i = 0; i < BOARD_WIDTH; i++)
+		for (int i = y; i > 0 ; i--)
 		{
-			for (int j = y; j > 0 ; j--)
+			for (int j = 0; j < BOARD_WIDTH; j++)
 			{
-				board[j][i] = board[j - 1][i];
+				board[j][i] = board[j][i - 1];
 			}
 		}
 	}
@@ -57,7 +57,7 @@ namespace board {
 			int i = 0;
 			while (i < BOARD_WIDTH)
 			{
-				if (board[j][i] != POS_FILLED)
+				if (board[i][j] != POS_FILLED)
 					break;
 				
 				++i;
@@ -78,7 +78,7 @@ namespace board {
 				{
 					board[i2][j2] = POS_FILLED;
 				}
-			}
+ 			}
 		}
 	}
 
@@ -96,15 +96,17 @@ namespace board {
 		{
 			for (int j1 = 0, j2 = y; j1 < PIECE_BLOCKS; j1++, j2++)
 			{
-				if (i2 > BOARD_WIDTH || j2 > BOARD_HEIGHT || i2 < 0)
+				if (i2 > BOARD_WIDTH - 1 || j2 > BOARD_HEIGHT - 1|| i2 < 0)
 				{
-					if (pieces->GetBlockType(i2, j2, piece, rotation) != 0)
+					if (pieces->GetBlockType(i1, j1, piece, rotation) != 0)
 						return false;
 				}
 
-
-				if (pieces->GetBlockType(i1, j1, piece, rotation) != 0 && !IsFreeBlock(i2, j2))
-					return false;
+				if (j2 >= 0)
+				{
+					if (pieces->GetBlockType(i1, j1, piece, rotation) != 0 && !IsFreeBlock(i2, j2))
+						return false;
+				}
 			}
 		}
 

@@ -48,10 +48,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 			case SDLK_x:
 			{
-				while (board.IsPossibleMovement(game.x, game.y + 1, game.piece, game.rotation))
+				while (board.IsPossibleMovement(game.x, game.y, game.piece, game.rotation))
 					game.y++;
 
-				board.StorePiece(game.x, game.y, game.piece, game.rotation);
+				board.StorePiece(game.x, game.y - 1, game.piece, game.rotation);
 				board.DeletePossibleLines();
 				if (board.IsGameOver())
 				{
@@ -95,8 +95,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 
 			time1 = SDL_GetTicks();
-		} // if
-	} // while
+		}
+	}
 
 	return 0;
 }

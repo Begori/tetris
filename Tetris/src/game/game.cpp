@@ -82,7 +82,6 @@ namespace game {
 		int topBorderPosition = screenHeight - (BLOCK_SIZE * BOARD_HEIGHT);
 		
 		io->DrawRectangle(leftBorderPosition, topBorderPosition, rightBorderPosition, screenHeight, BLACK);
-
 		io->DrawRectangle(leftBorderPosition - BOARD_LINE_WIDTH, topBorderPosition, leftBorderPosition, screenHeight, BLUE);
 		io->DrawRectangle(rightBorderPosition, topBorderPosition, rightBorderPosition + BOARD_LINE_WIDTH, screenHeight, BLUE);
 
