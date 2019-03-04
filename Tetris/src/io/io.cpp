@@ -52,7 +52,7 @@ namespace io {
 
 	void IO::DrawRectangle(int x1, int y1, int x2, int y2, enum color color)
 	{
-		boxColor(screen, x1, y1, x2, y2, colors[color]);
+		boxColor(screen, x1, y1, x2, y2 - 1, colors[color]);
 	}
 
 	void IO::ClearScreen()

@@ -78,7 +78,7 @@ namespace game {
 	void Game::DrawBoard()
 	{
 		int leftBorderPosition = BOARD_POSITION - (BLOCK_SIZE * (BOARD_WIDTH / 2));
-		int rightBorderPosition = BOARD_POSITION + (BLOCK_SIZE * (BOARD_WIDTH / 2));
+		int rightBorderPosition = BOARD_POSITION + (BLOCK_SIZE * (BOARD_WIDTH / 2)) + 1;
 		int topBorderPosition = screenHeight - (BLOCK_SIZE * BOARD_HEIGHT);
 		
 		io->DrawRectangle(leftBorderPosition, topBorderPosition, rightBorderPosition, screenHeight, BLACK);
@@ -91,7 +91,7 @@ namespace game {
 			{
 				if (!board->IsFreeBlock(i, j))
 				{
-					int x1 = leftBorderPosition + i * BLOCK_SIZE;
+					int x1 = leftBorderPosition + i * BLOCK_SIZE + 1;
 					int y1 = topBorderPosition + j * BLOCK_SIZE;
 					int x2 = x1 + BLOCK_SIZE - 1;
 					int y2 = y1 + BLOCK_SIZE - 1;
