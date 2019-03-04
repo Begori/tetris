@@ -13,6 +13,8 @@ namespace io {
 		~IO();
 
 		void DrawRectangle(int x1, int y1, int x2, int y2, enum color color);
+		void PrintText(int x, int y, char* text);
+
 		void ClearScreen();
 		void UpdateScreen();
 

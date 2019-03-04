@@ -23,7 +23,7 @@ namespace game {
 		int x, y;
 		int piece, rotation;
 
-		void DrawScene();
+		void DrawScene(int score);
 		void CreateNewPiece();
 
 	private:
@@ -40,6 +40,7 @@ namespace game {
 		void InitGame();
 		void DrawBoard();
 		void DrawPiece(int x, int y, int piece, int rotation);
+		void DrawScore(int score);
 	};
 
 }}

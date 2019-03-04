@@ -102,11 +102,23 @@ namespace game {
 		}
 	}
 
-	void Game::DrawScene()
+	void Game::DrawScore(int score)
+	{
+		int x = BOARD_POSITION - (BLOCK_SIZE * (BOARD_WIDTH / 2)) - BOARD_LINE_WIDTH - 100;
+		int y = screenHeight - (BLOCK_SIZE * BOARD_HEIGHT);
+
+		char text[14];
+		snprintf(text, 14, "Score: %d", score);
+
+		io->PrintText(x, y, text);
+	}
+
+	void Game::DrawScene(int score)
 	{
 		DrawBoard();
 		DrawPiece(x, y, piece, rotation);
 		DrawPiece(nextX, nextY, nextPiece, nextRotation);
+		DrawScore(score);
 	}
 
 }}

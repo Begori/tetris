@@ -22,7 +22,7 @@ namespace board {
 		int GetYPosInPixels(int pos);
 
 		void StorePiece(int x, int y, int piece, int rotation);
-		void DeletePossibleLines();
+		int DeletePossibleLines();
 
 		bool IsFreeBlock(int x, int y);
 		bool IsPossibleMovement(int x, int y, int piece, int rotation);

@@ -46,6 +46,7 @@ namespace io {
 			return false;
 		}
 
+
 		return true;
 	}
 
@@ -109,6 +110,11 @@ namespace io {
 	int IO::GetScreenHeight()
 	{
 		return screen->h;
+	}
+
+	void IO::PrintText(int x, int y, char* text)
+	{
+		stringColor(screen, x, y, text, colors[GREEN]);
 	}
 
 }}

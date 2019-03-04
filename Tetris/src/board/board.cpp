@@ -50,8 +50,10 @@ namespace board {
 		}
 	}
 
-	void Board::DeletePossibleLines()
+	int Board::DeletePossibleLines()
 	{
+		int count = 0;
+
 		for (int j = 0; j < BOARD_HEIGHT; j++)
 		{
 			int i = 0;
@@ -64,8 +66,13 @@ namespace board {
 			}
 
 			if (i == BOARD_WIDTH)
+			{
 				DeleteLine(j);
+				count++;
+			}
 		}
+
+		return count;
 	}
 
 	void Board::StorePiece(int x, int y, int piece, int rotation)

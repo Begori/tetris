@@ -12,12 +12,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Board board(&pieces, screenHeight);
 	Game game(&board, &pieces, &io, screenHeight);
 
+	int score = 0;
 	unsigned long time1 = SDL_GetTicks();
 
 	while (!io.IsKeyDown(SDLK_ESCAPE))
 	{
 		io.ClearScreen();
-		game.DrawScene();
+		game.DrawScene(score);
 		io.UpdateScreen();
 
 		int key = io.PollKey();
@@ -52,7 +53,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 					game.y++;
 
 				board.StorePiece(game.x, game.y - 1, game.piece, game.rotation);
-				board.DeletePossibleLines();
+				score += (board.DeletePossibleLines() * 25);
+
 				if (board.IsGameOver())
 				{
 					io.GetKey();
@@ -84,7 +86,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			else
 			{
 				board.StorePiece(game.x, game.y, game.piece, game.rotation);
-				board.DeletePossibleLines();
+				score += (board.DeletePossibleLines() * 25);
+
 				if (board.IsGameOver())
 				{
 					io.GetKey();
