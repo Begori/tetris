@@ -25,8 +25,8 @@ namespace game {
 
 		piece = GetRnd(0, 6);
 		rotation = GetRnd(0, 3);
-		x = (BOARD_WIDTH / 2) + pieces->GetXInitialPosition(piece, rotation);
-		y = pieces->GetYInitialPosition(piece, rotation);
+		x = (BOARD_WIDTH / 2) - 2;
+		y = -2;
 
 		nextPiece = GetRnd(0, 6);
 		nextRotation = GetRnd(0, 3);
@@ -38,8 +38,8 @@ namespace game {
 	{
 		piece = nextPiece;
 		rotation = nextRotation;
-		x = (BOARD_WIDTH / 2) + pieces->GetXInitialPosition(piece, rotation);
-		y = pieces->GetYInitialPosition(piece, rotation);
+		x = (BOARD_WIDTH / 2) - 3;
+		y = -2;
 
 		nextPiece = GetRnd(0, 6);
 		nextRotation = GetRnd(0, 3);

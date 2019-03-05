@@ -49,59 +49,6 @@ namespace pieces {
 		0, 0, 0, 0, 0
 	};
 
-	static char piecesInitialPosition[7][4][2] = 
-	{
-		// Square
-		{
-			{-2, -3},
-			{-2, -3},
-			{-2, -3},
-			{-2, -3}
-		},
-		// I
-		{
-			{-2, -2},
-			{-2, -3},
-			{-2, -2},
-			{-2, -2}
-		},
-		// L
-		{
-			{-2, -3},
-			{-2, -3},
-			{-2, -3},
-			{-2, -2}
-		},
-		// L mirrored
-		{
-			{-2, -3},
-			{-2, -2},
-			{-2, -3},
-			{-2, -3}
-		},
-		// N
-		{
-			{-2, -3},
-			{-2, -3},
-			{-2, -3},
-			{-2, -2}
-		},
-		// N mirrored
-		{
-			{-2, -3},
-			{-2, -3},
-			{-2, -3},
-			{-2, -2}
-		},
-		// T
-		{
-			{-2, -3},
-			{-2, -3},
-			{-2, -3},
-			{-2, -2}
-		}
-	};
-
 	int Pieces::GetBlockType(int x, int y, int piece, int rotation)
 	{
 		switch (rotation)
@@ -127,16 +74,6 @@ namespace pieces {
 			}
 		}
 
-	}
-
-	int Pieces::GetXInitialPosition(int piece, int rotation)
-	{
-		return piecesInitialPosition[piece][rotation][0];
-	}
-
-	int Pieces::GetYInitialPosition(int piece, int rotation)
-	{
-		return piecesInitialPosition[piece][rotation][1];
 	}
 
 }}
